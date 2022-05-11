@@ -8,17 +8,13 @@ using namespace std;
 namespace coup{
 class Ambassador : public Player {
 private:
-    int _coins;
-    Game _game;
-    string _name;
 public:
-    Ambassador(Game const  & game,string const  & name);
-    void income(){_coins++;}
-    void foreign_aid(){_coins+=2;}
-    int coins(){return _coins;}
-    static void coup(Player const & name);
-    static void transfer(Player const & p1,Player const  & p2);  
-    static void block(Player const & name);
+    Ambassador(Game & game,string const  & name);
+    // void income(){_coins++;}
+    // void foreign_aid(){_coins+=2;}
+    // int coins(){return _coins;
+    void transfer(Player & p1,Player & p2);  
+     void block(Player & name);
     static string role();
 };
 

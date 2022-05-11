@@ -5,17 +5,19 @@
 #include <vector>
 using namespace std;
 namespace coup{
-    Contessa::Contessa(Game const  & game,string const  & name){
-        this->_game=game;
-        this->_name =name;
-        this->_coins=0;
+    Contessa::Contessa(Game & game,string const  & name) : Player (game,name) {
+    ;   
     }
-    void Contessa::block(Player const  &name){
-        ;
+    void Contessa::block(Player & name){
+        int isBlocked = name.previous.compare("coup");
+        if(isBlocked==0){
+            name.backToLife(name);
+        }
+        else{
+            throw("The blocking action is invalid.");
+        } 
     }
-    void Contessa::coup(Player const  & name){
-        ;
-    }
+
     string Contessa::role(){
         return "Contessa";
     }

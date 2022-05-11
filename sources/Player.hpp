@@ -1,34 +1,32 @@
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <stdexcept>
-#include <vector>
-#include <string.h>
-#include "Game.hpp"
 #pragma once
-
-
+#include "Game.hpp"
+#include <string>
 using namespace std;
-
-namespace coup
-{
-class Player {
-private:
+namespace coup{
+    class Game;
+    class Player
+    {   
+public:
+    Game *_game;
     string _name;
     int _coins;
     string _role;
-public:
-    Player();
-    Player(string name,int coins,string role);
+    bool isdead;
+    string previous;
+    Player *killed;
+    Player(Game  & game,string const  & name);
+    // Player(string name,int coins,string role);
     ~Player();
     string getName(){return _name;}
     void setName(string name){this->_name=name;}
     string getName(Player p){return p._name;}
     int coins(){return _coins;}
-    void income(){_coins++;}
-    void foreign_aid(){_coins+=2;} // need to add an option of block
-    static void coup( Player const  &  name);
+    void coup( Player &  name);
     string role(){return _role;};
+    void foreign_aid();
+    void income();
+    void CheckTurn() const ;
+    void backToLife(Player & name) const;
     
 
 

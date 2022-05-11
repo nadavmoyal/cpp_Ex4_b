@@ -1,28 +1,39 @@
+#pragma once
+#include "Player.hpp"
 #include <iostream>
 #include <fstream>
 #include <sstream>
 #include <stdexcept>
 #include <vector>
 #include <string.h>
-#pragma once
 
 using namespace std;
 
 namespace coup
 {
+class Player;
 class Game {
+protected:
+   
 
 private:
-  	vector<std::string> _Players; 
-    int NumOfPlayers;
-    int turnCounter;
+
 public:
-    string winner(){return "nadav";}
-    string turn(){return "your turn";}
-    int getNumOfPlayers(){return NumOfPlayers;}
-    Game(){};
-    ~Game(){};
-    vector<std::string> players(){ return _Players;}
+    string Winner;
+  	vector<string> _Players; 
+    vector<Player*> _PlayersVector; 
+    unsigned int turnCounter;
+    int NumOfPlayers;
+    bool end;
+    bool gameStarted;
+    string winner() const;
+    string turn();
+    void CalculateTurn();
+    int getNumOfPlayers();
+    Game();
+    ~Game();
+    vector<string> players();
+    void insertPlayer(Player *p);
     // string getTurn() const{return _Players[(unsigned int)(turnCounter)];}
     // string turn(){return _Players[(unsigned int)(turnCounter)];}
     // static std::vector<coup::Player> getPlayers(){return players;}
